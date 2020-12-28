@@ -1,0 +1,28 @@
+header * {
+    display: inline;
+}
+#logo, #logo:link, #logo:visited {
+    text-decoration: none;
+    color: black;
+    font-weight: 900;
+}
+#logo:hover {
+    text-decoration: underline;
+}
+.poll {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.poll h4 {
+    font-size: large;
+}
+.poll li {
+    font-size: medium;
+    list-style-type: none;
+}
+.votes .label {
+    font-weight: 600;
+}
+h2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 300;
+}

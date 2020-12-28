@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Polls!.com</title>
+        <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+    </head>
+    <body>
+
+        <header>
+            <h1><a id="logo" href="{% url 'polls:index' %}">Polls!com</a></h1>
+            <div>
+                {% block header-name %}
+                {% endblock %}
+            </div>
+        </header>
+        <div id="main">
+            {% block body %}
+            {% endblock %}
+        </div>
+        
+    </body>
+</html>

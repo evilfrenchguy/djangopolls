@@ -1,0 +1,30 @@
+{% extends "polls/layout.html" %}
+
+{% block header-name %}
+<h2>Home</h2>
+<h2><a href="{% url 'polls:new' %}">New</a></h2>
+{% endblock %}
+
+{% block body %}
+<h3>Welcome to Polls!</h3>
+{% if not polls %}
+    <p>No polls yet! Create one <a href="{% url 'polls:new' %}">here</a>.</p>
+{% else %}
+    {% for poll_id, poll in polls.items %}
+    <div class="poll">
+        <h4>{{poll.title}}</h4>
+        <ol>
+            {% for choice_id, choice in poll.choices.items %}
+                <li>
+                    {{choice.content}}
+
+                    <ul class="votes">
+                        <li><span class="label">Votes: </span>{{choice.votes}}</li>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
+    {% endfor %}
+{% endif %}
+{% endblock %}

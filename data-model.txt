@@ -1,0 +1,28 @@
+polls: {
+	00: {
+		"title": "blabla",
+		"choices": {
+			0: {
+				"content": content,
+				"votes": votes
+			},
+			1: {
+				"content": content,
+				"votes": votes
+			}
+		}
+	},
+	01: {
+		"title": "blabla2",
+		"choices": {
+			00: {
+				"content": content,
+				"votes": votes
+			},
+			0: {
+				"content": content,
+				"votes": votes
+			}
+		}
+	}
+}
