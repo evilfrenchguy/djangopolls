@@ -2,55 +2,20 @@ from django.shortcuts import render
 from django import forms
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
-master_polls = []
+from .models import Poll, PollChoice
 
 class NewPollForm(forms.Form):
     poll_title = forms.CharField(label='Poll Title')
     choice1 = forms.CharField(label='Choice')
     choice2 = forms.CharField(label='Choice')
-class PollChoice:
-    def __init__(self, i, content):
-        self.id = i
-        self.content = content
-        self.votes = 0
-    
-    def addVote(self):
-        self.votes = self.votes + 1
-class Poll:
-    def __init__(self, i, title, choices):
-        self.id = i
-        self.title = title
-        self.choices = choices
-
-    def voteAt(self, index):
-        self.choices[index].addVote()
 
 # Create your views here.
 def index(request):
-    polls = master_polls
-    context = {}
-    if len(polls) > 0:
-        for i in range(len(polls)):
-            entry = {str(i): {"title": polls[i].title}}
-            choices = {"choices": {}}
-            for j in range(len(polls[i].choices)):
-                choice = polls[i].choices[j]
-                choices["choices"].update(
-                    {str(j): {
-                        "content": choice.content,
-                        "votes": choice.votes
-                    }
-                })
-            
-            entry[str(i)].update(choices)
-            context.update(entry)
-
-    #context_final = {"polls": context}
-    #print(context_final)
-    return render(request, "polls/index.html", {
-        "polls": context
-    })    
+    context = {
+        'polls': Poll.objects.all(),
+        'choices': PollChoice.objects.all()
+    }
+    return render(request, "polls/index.html", context)    
 
 def new(request):
     if request.method == "POST":
